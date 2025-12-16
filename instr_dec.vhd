@@ -1,36 +1,36 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity instr_decoder is
+entity instr_dec is
     port(
-        Din  : in  std_logic_vector(3 downto 0);
-        Dout : out std_logic_vector(15 downto 0)
+        din  : in  std_logic_vector(3 downto 0);
+        dout : out std_logic_vector(15 downto 0)
     );
 end instr_decoder;
 
-architecture rtl of instr_decoder is
+architecture rtl of instr_dec is
 begin
-    process(Din)
+    process(din)
     begin
-        Dout <= (others => '0');
-        case Din is
-            when "0000" => Dout(0)  <= '1'; -- NOP
-            when "0001" => Dout(1)  <= '1'; -- LDAC
-            when "0010" => Dout(2)  <= '1'; -- STAC
-            when "0011" => Dout(3)  <= '1'; -- MVAC
-            when "0100" => Dout(4)  <= '1'; -- MOVR
-            when "0101" => Dout(5)  <= '1'; -- JUMP
-            when "0110" => Dout(6)  <= '1'; -- JMPZ
-            when "0111" => Dout(7)  <= '1'; -- JPNZ
-            when "1000" => Dout(8)  <= '1'; -- ADD
-            when "1001" => Dout(9)  <= '1'; -- SUB
-            when "1010" => Dout(10) <= '1'; -- INAC
-            when "1011" => Dout(11) <= '1'; -- CLAC
-            when "1100" => Dout(12) <= '1'; -- AND
-            when "1101" => Dout(13) <= '1'; -- OR
-            when "1110" => Dout(14) <= '1'; -- XOR
-            when "1111" => Dout(15) <= '1'; -- NOT
+        dout <= (others => '0');
+        case din is
+            when "0000" => dout(0)  <= '1'; -- INOP
+            when "0001" => dout(1)  <= '1'; -- ILDAC
+            when "0010" => dout(2)  <= '1'; -- ISTAC
+            when "0011" => dout(3)  <= '1'; --IMVAC
+            when "0100" => dout(4)  <= '1'; -- IMOVR
+            when "0101" => dout(5)  <= '1'; -- IJUMP
+            when "0110" => dout(6)  <= '1'; -- IJMPZ
+            when "0111" => dout(7)  <= '1'; -- IJPNZ
+            when "1000" => dout(8)  <= '1'; -- IADD
+            when "1001" => dout(9)  <= '1'; -- SUB
+            when "1010" => dout(10) <= '1'; -- INAC
+            when "1011" => dout(11) <= '1'; -- IICLAC
+            when "1100" => dout(12) <= '1'; -- IAND
+            when "1101" => dout(13) <= '1'; -- IOR
+            when "1110" => dout(14) <= '1'; -- IXOR
+            when "1111" => dout(15) <= '1'; -- INOT
             when others => null;
         end case;
     end process;
-end rtl;
+end architecture;
